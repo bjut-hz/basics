@@ -28,3 +28,25 @@ func TestArrayList(t *testing.T) {
 
 	DeleteList(l)
 }
+
+
+func TestLinkList(t *testing.T) {
+	l := NewLinkList()
+	pos := l.PushFront(1)
+	pos = l.PushFront(2)
+
+	// test FindPrevious
+	if l.FindPrevious(1).Value != pos.Value {
+		t.Fail()
+	}
+
+	l.Insert(3, pos)
+
+	fmt.Println(l.DumpLinkList(), l.len)
+	l.Delete(1)
+	fmt.Println(l.DumpLinkList(), l.len)
+
+	// error prone, pos should be nil if delete element 2.
+	l.Insert(4, pos)
+	fmt.Println(l.DumpLinkList(), l.len)
+}

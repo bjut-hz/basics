@@ -4,6 +4,7 @@ import (
 	"log"
 	"bytes"
 	"strconv"
+	"fmt"
 )
 
 // array implementation
@@ -115,6 +116,7 @@ type LinkList struct {
 	root Element
 }
 
+
 func NewLinkList() *LinkList {
 	return new(LinkList).Init()
 }
@@ -125,20 +127,52 @@ func (l *LinkList) Init() *LinkList {
 	return l
 }
 
-func (l *LinkList) InsertFront(value interface{}) *Element {
+
+func (l *LinkList) PushFront(value interface{}) *Element {
+	return l.Insert(value, &l.root)
 }
 
-func (l *LinkList) InsertAfter(value interface{}, at *Element) *Element {
+func (l *LinkList) Insert(value interface{}, at *Element) *Element {
+	ele := &Element{Value:value, next:nil}
+	ele.next = at.next
+	at.next = ele
+	l.len++
+	return ele
 }
 
-func (l *LinkList) InsertBefore(value interface{}, at *Element) *Element {
-
-}
 
 func (l *LinkList) Find(value interface{}) *Element {
-
+	var p *Element
+	for p = l.root.next; p.Value != value; p = p.next {}
+	return p
 }
 
-func (l *LinkList) Delete(at *Element) {
+func (l *LinkList) FindPrevious(value interface{}) *Element {
+	var p *Element
+	for p = &l.root; p.next.Value != value; p = p.next{}
+	return p
+}
 
+func (l *LinkList) Delete(value interface{}) {
+	prev := l.FindPrevious(value)
+	prev.next = prev.next.next
+
+	l.len--
+	// Element memory will collect by GC.
+}
+
+//func (l *LinkList) Retrieve(e *Element) interface{} {
+//	return e.Value
+//}
+
+func (l *LinkList) Len() int {
+	return l.len
+}
+
+func (l *LinkList) DumpLinkList() string {
+	var b bytes.Buffer
+	for p := l.root.next; p != nil; p = p.next {
+		b.WriteString(fmt.Sprintf("%v ", p.Value))
+	}
+	return b.String()
 }
