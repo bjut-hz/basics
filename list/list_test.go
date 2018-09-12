@@ -47,6 +47,6 @@ func TestLinkList(t *testing.T) {
 	fmt.Println(l.DumpLinkList(), l.len)
 
 	// error prone, pos should be nil if delete element 2.
-	l.Insert(4, pos)
+	l.Insert("hello", pos)
 	fmt.Println(l.DumpLinkList(), l.len)
 }

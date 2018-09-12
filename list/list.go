@@ -149,7 +149,7 @@ func (l *LinkList) Find(value interface{}) *Element {
 
 func (l *LinkList) FindPrevious(value interface{}) *Element {
 	var p *Element
-	for p = &l.root; p.next.Value != value; p = p.next{}
+	for p = &l.root; nil != p.next && p.next.Value != value; p = p.next{}
 	return p
 }
 
@@ -161,9 +161,9 @@ func (l *LinkList) Delete(value interface{}) {
 	// Element memory will collect by GC.
 }
 
-//func (l *LinkList) Retrieve(e *Element) interface{} {
-//	return e.Value
-//}
+func (l *LinkList) Retrieve(e *Element) interface{} {
+	return e.Value
+}
 
 func (l *LinkList) Len() int {
 	return l.len
