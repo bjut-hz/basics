@@ -42,11 +42,21 @@ func TestLinkList(t *testing.T) {
 
 	l.Insert(3, pos)
 
-	fmt.Println(l.DumpLinkList(), l.len)
-	l.Delete(1)
-	fmt.Println(l.DumpLinkList(), l.len)
+	fmt.Println(l.DumpLinkList(), l.Len())
+	l.Delete(3)
+	fmt.Println(l.DumpLinkList(), l.Len())
 
 	// error prone, pos should be nil if delete element 2.
 	l.Insert("hello", pos)
-	fmt.Println(l.DumpLinkList(), l.len)
+	fmt.Println(l.DumpLinkList(), l.Len())
+
+
+	ele := l.Find("hello")
+	if ele == nil {
+		t.Fail()
+	}
+
+	if l.Retrieve(ele) != "hello" {
+		t.Fail()
+	}
 }

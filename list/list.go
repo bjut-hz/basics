@@ -155,10 +155,12 @@ func (l *LinkList) FindPrevious(value interface{}) *Element {
 
 func (l *LinkList) Delete(value interface{}) {
 	prev := l.FindPrevious(value)
-	prev.next = prev.next.next
+	if nil != prev && nil != prev.next {
+		prev.next = prev.next.next
 
-	l.len--
-	// Element memory will collect by GC.
+		l.len--
+		// Element memory will collect by GC.
+	}
 }
 
 func (l *LinkList) Retrieve(e *Element) interface{} {
