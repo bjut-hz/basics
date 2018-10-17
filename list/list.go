@@ -159,7 +159,7 @@ func (l *LinkList) Delete(value interface{}) {
 		prev.next = prev.next.next
 
 		l.len--
-		// Element memory will collect by GC.
+		// Element memory will be collected by GC.
 	}
 }
 
