@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func TestTwoSum(t *testing.T) {
+func TestProductExceptSelf(t *testing.T) {
 	nums := []int{1,2}
 
 	fmt.Println(productExceptSelf(nums))
