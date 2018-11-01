@@ -79,6 +79,7 @@ func numSquares(n int) int {
 	}
 
 	for 0 != queue.Len() {
+		// 队列数据从小到大，保证平方数的个数最少
 		e := queue.Front()
 		x := e.Value.(int)
 		queue.Remove(e)
