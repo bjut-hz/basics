@@ -91,7 +91,7 @@ func findAnagrams1(s string, p string) []int {
 	return result
 }
 
-
+// sliding window
 func findAnagrams2(s string, p string) []int {
 	N := len(s)
 	M := len(p)
@@ -114,6 +114,7 @@ func findAnagrams2(s string, p string) []int {
 		if pCache[s[right]] >= 1 {
 			cnt--
 		}
+		// enter window
 		pCache[s[right]]--
 		right++
 
@@ -126,6 +127,7 @@ func findAnagrams2(s string, p string) []int {
 			if pCache[s[left]] >= 0 {
 				cnt++
 			}
+			// left window
 			pCache[s[left]]++
 			left++
 		}
