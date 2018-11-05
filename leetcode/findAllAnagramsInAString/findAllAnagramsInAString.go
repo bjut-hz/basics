@@ -37,38 +37,97 @@ func findAnagrams(s string, p string) []int {
 	M := len(p)
 	result := make([]int, 0, 10)
 
-	cache := make(map[byte]int, M)
+	cache := [256]int{}
 	for i := 0; i < M; i++ {
-		if _, ok := cache[p[i]]; ok {
-			cache[p[i]] = cache[p[i]] + 1
-		} else {
-			cache[p[i]] = 0
+		cache[p[i]]++
+	}
+
+	for i := 0; i <= (N-M); i++ {
+		tmp := cache
+		success := true
+		for j := 0; j < M; j++ {
+			tmp[s[i+j]]--
+			if tmp[s[i+j]] < 0 {
+				success = false
+				break
+			}
+		}
+		if success {
+			result = append(result, i)
 		}
 	}
 
-	for i := 0; i <= (N - M); i++ {
-		tmp := make(map[byte]int, M)
-		for j := 0; j < M; j++ {
-			if _, ok := cache[s[i+j]]; ok {
-				if _, ok := tmp[s[i+j]]; ok {
-					tmp[s[i+j]] = tmp[s[i+j]] + 1
-				} else {
-					tmp[s[i+j]] = 0
-				}
-			}
+	return result
+}
+
+// 右侧加入了一个字符，左侧删除一个字符，对比是否相等
+func findAnagrams1(s string, p string) []int {
+	N := len(s)
+	M := len(p)
+
+	if N < M {
+		return []int{}
+	}
+
+	result := make([]int, 0, 10)
+
+	pCache := [256]int{}
+	sCache := [256]int{}
+	for i := 0; i < M; i++ {
+		pCache[p[i]]++
+		sCache[s[i]]++
+	}
+	if pCache == sCache {
+		result = append(result, 0)
+	}
+
+	for i := M; i < N; i++ {
+		sCache[s[i]]++
+		sCache[s[i-M]]--
+		if sCache == pCache {
+			result = append(result, i-M+1)
 		}
-		if len(tmp) == len(cache) {
-			isSolution := true
-			// compare map
-			for k := range tmp {
-				if tmp[k] != cache[k] {
-					isSolution = false
-					break
-				}
+	}
+	return result
+}
+
+
+func findAnagrams2(s string, p string) []int {
+	N := len(s)
+	M := len(p)
+
+	if N < M {
+		return []int{}
+	}
+
+	result := make([]int, 0, 10)
+
+	left, right := 0, 0
+	cnt := M
+
+	pCache := [256]int{}
+	for i := 0; i < M; i++ {
+		pCache[p[i]]++
+	}
+
+	for right < N {
+		if pCache[s[right]] >= 1 {
+			cnt--
+		}
+		pCache[s[right]]--
+		right++
+
+		if 0 == cnt {
+			result = append(result, left)
+		}
+
+		if right - left == M  {
+			// 此时s[left]属于p字符串,那么应该cnt++
+			if pCache[s[left]] >= 0 {
+				cnt++
 			}
-			if isSolution {
-				result = append(result, i)
-			}
+			pCache[s[left]]++
+			left++
 		}
 	}
 	return result
