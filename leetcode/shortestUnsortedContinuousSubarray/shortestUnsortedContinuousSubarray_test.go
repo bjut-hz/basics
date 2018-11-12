@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func TestTopKFrequent(t *testing.T) {
+func TestFindUnsortedSubarray(t *testing.T) {
 	nums := []int{2, 6, 4, 8, 10, 9, 15}
 	fmt.Println(findUnsortedSubarray(nums))
 }
