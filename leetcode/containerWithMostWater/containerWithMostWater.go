@@ -58,7 +58,7 @@ func maxArea1(height []int) int {
 	for left < right {
 		area = max2(area, min2(height[left], height[right]) * (right - left))
 		if height[left] < height[right] {
-			left ++
+			left++
 		} else {
 			right--
 		}
