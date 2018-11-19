@@ -6,7 +6,7 @@ import (
 )
 
 func TestMaxSum(t *testing.T) {
-	nums := []int{4, -90, 5, -2, -1, 2, 6, -2}
+	nums := []int{-2,-3}
 	fmt.Println(maxSum1(nums))
 
 	fmt.Println(maxSum2(nums))
