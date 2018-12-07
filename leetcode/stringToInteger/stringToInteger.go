@@ -56,13 +56,10 @@ func myAtoi(str string) int {
 	// skip whitespace character
 	for ; i < N && str[i] == ' '; i++ {}
 
-	// invalid digits
-	if i < N && str[i] != '-' && str[i] != '+' && !unicode.IsDigit(rune(str[i])) { return 0 }
-
-	isNegative := false
+	sign := 1
 	if i < N && (str[i] == '-' || str[i] == '+') {
 		if str[i] == '-' {
-			isNegative = true
+			sign = -1
 		}
 		i++
 	}
@@ -72,7 +69,7 @@ func myAtoi(str string) int {
 	for i < N && unicode.IsDigit(rune(str[i])) {
 		t = t * 10 + int32(str[i] - '0')
 		if t / 10 != res { // overflow
-			if isNegative {
+			if sign < 0 {
 				return int(math.MinInt32)
 			} else {
 				return int(math.MaxInt32)
@@ -82,8 +79,5 @@ func myAtoi(str string) int {
 		i++
 	}
 
-	if isNegative {
-		res = -res
-	}
-	return int(res)
+	return sign * int(res)
 }
