@@ -1,5 +1,5 @@
-#ifndef __BASIC_H__
-#define __BASIC_H__
+#ifndef BASIC_H_
+#define BASIC_H_
 
 #define HZ_CHECK_MEMORY_LEAKS
 
@@ -12,6 +12,6 @@
 #endif // HZ_CHECK_MEMORY_LEAKS
 
 
-#endif // !__BASIC_H__
+#endif // BASIC_H_
 
 // 在程序退出的时候，调用_CrtDumpMemoryLeaks函数
