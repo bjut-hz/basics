@@ -8,6 +8,7 @@ set(DP_PUBLIC_INCLUDE_DIR "include/")
 # 编译器用来寻找include文件的目录
 include_directories (
   "${PROJECT_SOURCE_DIR}/include"
+  "${PROJECT_SOURCE_DIR}/util"
   "${PROJECT_SOURCE_DIR}"
 )
 

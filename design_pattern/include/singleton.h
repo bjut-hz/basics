@@ -1,32 +1,25 @@
 #ifndef SINGLETON_H_
 #define SINGLETON_H_
 
-namespace DP {
+#include "basic.h"
 
-	template<typename T>
+namespace DP {
 	class ThreadUnsafeSingleton{
 	public:
-		ThreadUnsafeSingleton() = delete;
-		static T* GetInstance() {
-			if (nullptr == instance) {
-				instance = new T();
-			}
-			return instance;
-		};
+		static ThreadUnsafeSingleton* GetInstance();
+		static void Release();
 
-		static void Release() {
-			if (nullptr != instance) {
-				delete instance;
-				instance = nullptr;
-			}
-		}
+		void SetNum(int);
+		int GetNum();
 
 	private:
-		static T* instance;
+		ThreadUnsafeSingleton() = default;
+
+	private:
+		static ThreadUnsafeSingleton* instance;
+		int a_ = 0;
 	};
 
-	template<class T>
-	T* ThreadUnsafeSingleton<T>::instance = nullptr;
 } // namespace DP
 
 #endif // SINGLETON_H_

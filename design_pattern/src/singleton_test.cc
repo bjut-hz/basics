@@ -6,21 +6,13 @@
 namespace DP {
 class ThreadUnsafeSingletonTest{
 	public:
-	class Num {
-		public:
-			int GetNum() { return a_;}
-			void SetNum(int a) { a_ = a;}
-		private:
-			int a_ = 0;
-	};
+	ThreadUnsafeSingleton* i1 = ThreadUnsafeSingleton::GetInstance();
+	ThreadUnsafeSingleton* i2 = ThreadUnsafeSingleton::GetInstance();
 
-	public:
-		Num* i1 = ThreadUnsafeSingleton<Num>::GetInstance();
-		Num* i2 = ThreadUnsafeSingleton<Num>::GetInstance();
+	~ThreadUnsafeSingletonTest() {
+		ThreadUnsafeSingleton::Release();
+	}
 
-		~ThreadUnsafeSingletonTest() {
-			ThreadUnsafeSingleton<Num>::Release();
-		}
 };
 
 TEST(ThreadUnsafeSingletonTest, ThreadUnsafeSingle) {
@@ -29,6 +21,8 @@ TEST(ThreadUnsafeSingletonTest, ThreadUnsafeSingle) {
 
 	i1->SetNum(100);
 	ASSERT_EQ(i2->GetNum(), 100);
+
+
 };
 } // namespace DP
 
