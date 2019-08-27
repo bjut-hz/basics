@@ -30,10 +30,10 @@ class Tester {
 		bool ok_;
 		const char* fname_;
 		int line_;
-		std::stringstream ss_; // ¶îÍâµÄdebugĞÅÏ¢
+		std::stringstream ss_; // é¢å¤–çš„debugä¿¡æ¯
 
 	public:
-		// ±£´æÎÄ¼şĞÅÏ¢ÒÔ¼°ĞĞºÅ£¬·½±ãµ÷ÊÔ
+		// ä¿å­˜æ–‡ä»¶ä¿¡æ¯ä»¥åŠè¡Œå·ï¼Œæ–¹ä¾¿è°ƒè¯•
 		Tester(const char* f, int l)
 			: ok_(true), fname_(f), line_(l) {
 		}
@@ -53,7 +53,7 @@ class Tester {
 			return *this;
 		}
 
-// ÀûÓÃºêÉú³É´úÂë¡£Éú³ÉIsEq,IsNe,IsGe,IsGt,IsLe,IsLtº¯Êı
+// åˆ©ç”¨å®ç”Ÿæˆä»£ç ã€‚ç”ŸæˆIsEq,IsNe,IsGe,IsGt,IsLe,IsLtå‡½æ•°
 #define BINARY_OP(name, op)                             \
   template <class X, class Y>                           \
   Tester& name(const X& x, const Y& y) {                \

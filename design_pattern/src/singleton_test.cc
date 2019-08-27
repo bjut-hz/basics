@@ -1,3 +1,5 @@
+#include<thread>
+
 #include "util/testharness.h"
 #include "util/basic.h"
 #include "singleton.h"
@@ -9,10 +11,17 @@ class ThreadUnsafeSingletonTest{
 	ThreadUnsafeSingleton* i1 = ThreadUnsafeSingleton::GetInstance();
 	ThreadUnsafeSingleton* i2 = ThreadUnsafeSingleton::GetInstance();
 
-	~ThreadUnsafeSingletonTest() {
+	virtual ~ThreadUnsafeSingletonTest() {
 		ThreadUnsafeSingleton::Release();
 	}
 
+};
+
+class ThreadSafeSingletonTest {
+public:
+	virtual ~ThreadSafeSingletonTest() {
+		ThreadSafeSingletonVer1::Release();
+	}
 };
 
 TEST(ThreadUnsafeSingletonTest, ThreadUnsafeSingle) {
@@ -21,9 +30,99 @@ TEST(ThreadUnsafeSingletonTest, ThreadUnsafeSingle) {
 
 	i1->SetNum(100);
 	ASSERT_EQ(i2->GetNum(), 100);
-
-
 };
+
+#define N 1000
+TEST(ThreadSafeSingletonTest, Version1) {
+	long long instance = (long long)ThreadSafeSingletonVer1::GetInstance();
+
+	auto threadFunc = [=]() -> void {
+		auto i1 = (long long)ThreadSafeSingletonVer1::GetInstance();
+		ASSERT_EQ(i1, instance);
+	};
+
+	std::thread th[N];
+	for(int i = 0; i < N; ++i){
+		th[i] = std::thread(threadFunc);
+	}
+
+	for(int i = 0; i < N; ++i){
+		th[i].join();
+	}
+}
+
+TEST(ThreadSafeSingletonTest, Version2) {
+	long long instance = (long long)ThreadSafeSingletonVer2::GetInstance();
+
+	auto threadFunc = [=]() -> void {
+		auto i1 = (long long)ThreadSafeSingletonVer2::GetInstance();
+		ASSERT_EQ(i1, instance);
+	};
+
+	std::thread th[N];
+	for (int i = 0; i < N; ++i) {
+		th[i] = std::thread(threadFunc);
+	}
+
+	for (int i = 0; i < N; ++i) {
+		th[i].join();
+	}
+}
+
+
+TEST(ThreadSafeSingletonTest, Version3) {
+	long long instance = (long long)ThreadSafeSingletonVer3::GetInstance();
+
+	auto threadFunc = [=]() -> void {
+		auto i1 = (long long)ThreadSafeSingletonVer3::GetInstance();
+		ASSERT_EQ(i1, instance);
+	};
+
+	std::thread th[N];
+	for (int i = 0; i < N; ++i) {
+		th[i] = std::thread(threadFunc);
+	}
+
+	for (int i = 0; i < N; ++i) {
+		th[i].join();
+	}
+}
+
+TEST(ThreadSafeSingletonTest, Version4) {
+	long long instance = (long long)ThreadSafeSingletonVer4::GetInstance();
+
+	auto threadFunc = [=]() -> void {
+		auto i1 = (long long)ThreadSafeSingletonVer4::GetInstance();
+		ASSERT_EQ(i1, instance);
+	};
+
+	std::thread th[N];
+	for (int i = 0; i < N; ++i) {
+		th[i] = std::thread(threadFunc);
+	}
+
+	for (int i = 0; i < N; ++i) {
+		th[i].join();
+	}
+}
+
+TEST(ThreadSafeSingletonTest, Version5) {
+	long long instance = (long long)ThreadSafeSingletonVer5::GetInstance();
+
+	auto threadFunc = [=]() -> void {
+		auto i1 = (long long)ThreadSafeSingletonVer5::GetInstance();
+		ASSERT_EQ(i1, instance);
+	};
+
+	std::thread th[N];
+	for (int i = 0; i < N; ++i) {
+		th[i] = std::thread(threadFunc);
+	}
+
+	for (int i = 0; i < N; ++i) {
+		th[i].join();
+	}
+}
 } // namespace DP
 
 

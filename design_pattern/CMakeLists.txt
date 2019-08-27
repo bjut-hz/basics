@@ -18,6 +18,7 @@ target_sources(hz
   PRIVATE
     "${PROJECT_SOURCE_DIR}/src/singleton.cc"
     "${DP_PUBLIC_INCLUDE_DIR}/singleton.h"
+    "${DP_PUBLIC_INCLUDE_DIR}/barrier.h"
 )
 
 if(DP_BUILD_TESTS)
