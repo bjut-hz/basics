@@ -8,6 +8,7 @@ set(CLRS_PUBLIC_INCLUDE_DIR "include/")
 # 编译器用来寻找include文件的目录
 include_directories (
   "${PROJECT_SOURCE_DIR}/include"
+  "${PROJECT_SOURCE_DIR}/util"
   "${PROJECT_SOURCE_DIR}"
 )
 
@@ -15,8 +16,9 @@ include_directories (
 add_library(hz "")
 target_sources(hz
   PRIVATE
-    "${PROJECT_SOURCE_DIR}/src/list.cc"
-    "${CLRS_PUBLIC_INCLUDE_DIR}/list.h"
+    "${PROJECT_SOURCE_DIR}/src/sort.cc"
+    "${CLRS_PUBLIC_INCLUDE_DIR}/sort.h"
+    "${CLRS_PUBLIC_INCLUDE_DIR}/maximum_subarray.h"
 )
 
 if(CLRS_BUILD_TESTS)
@@ -39,10 +41,10 @@ if(CLRS_BUILD_TESTS)
     add_test(NAME "${test_target_name}" COMMAND "${test_target_name}")
   endfunction(clrs_test)
 
-  clrs_test("${PROJECT_SOURCE_DIR}/src/example_test.cc")
+  clrs_test("${PROJECT_SOURCE_DIR}/src/sort_test.cc")
+  clrs_test("${PROJECT_SOURCE_DIR}/src/maximum_subarray_test.cc")
 endif(CLRS_BUILD_TESTS)
 
 install(
   FILES
-
 )
