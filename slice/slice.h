@@ -264,6 +264,7 @@ public:
 				cap_ = cap_ + cap_ >> 1;
 			}
 
+			// should hold the raw content and do not let dctor to release it
 			auto tmp = s_ptr_;
 			s_ptr_ = std::make_shared<std::vector<T>>(cap_);
 			std::copy(iter_, iter_ + len_, s_ptr_->begin());
