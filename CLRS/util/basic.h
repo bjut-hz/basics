@@ -11,7 +11,7 @@
 #define new DBG_NEW
 #endif // HZ_CHECK_MEMORY_LEAKS
 
-
+#include<type_traits>
 // Y combinator
 template<typename Functor>
 struct YBuiler {

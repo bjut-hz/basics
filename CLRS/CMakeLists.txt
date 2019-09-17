@@ -19,6 +19,8 @@ target_sources(hz
     "${PROJECT_SOURCE_DIR}/src/sort.cc"
     "${CLRS_PUBLIC_INCLUDE_DIR}/sort.h"
     "${CLRS_PUBLIC_INCLUDE_DIR}/maximum_subarray.h"
+    "${CLRS_PUBLIC_INCLUDE_DIR}/suqare_matrix_multiply.h"
+    "${CLRS_PUBLIC_INCLUDE_DIR}/hire_assistant.h"
 )
 
 if(CLRS_BUILD_TESTS)
@@ -43,6 +45,8 @@ if(CLRS_BUILD_TESTS)
 
   clrs_test("${PROJECT_SOURCE_DIR}/src/sort_test.cc")
   clrs_test("${PROJECT_SOURCE_DIR}/src/maximum_subarray_test.cc")
+  clrs_test("${PROJECT_SOURCE_DIR}/src/suqare_matrix_multiply_test.cc")
+  clrs_test("${PROJECT_SOURCE_DIR}/src/hire_assistant_test.cc")
 endif(CLRS_BUILD_TESTS)
 
 install(
