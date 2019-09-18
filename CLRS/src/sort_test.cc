@@ -14,48 +14,37 @@ class SortTest{
 			ASSERT_EQ(a[i], b[i]);
 		}
 	}
+
+	void TestSort(std::vector<int>& nums) {
+		std::vector<int> insertion_nums = nums;
+		std::vector<int> merge_nums = nums;
+		std::vector<int> bubble_nums = nums;
+		std::vector<int> heap_nums = nums;
+
+		std::sort(nums.begin(), nums.end());
+		sort::InsertionSort(insertion_nums);
+		sort::MergeSort(merge_nums);
+		sort::BubbleSort(bubble_nums);
+		sort::HeapSort(heap_nums);
+		AssertVectorEq(nums, insertion_nums);
+		AssertVectorEq(nums, merge_nums);
+		AssertVectorEq(nums, bubble_nums);
+		AssertVectorEq(nums, heap_nums);
+	}
 };
 
 TEST(SortTest, AllSort) {
 	std::vector<int> nums = {};
-	std::vector<int> insertion_nums = nums;
-	std::vector<int> merge_nums = nums;
-	std::vector<int> bubble_nums = nums;
-
-
-	std::sort(nums.begin(), nums.end());
-	sort::InsertionSort(insertion_nums);
-	sort::MergeSort(merge_nums);
-	sort::BubbleSort(bubble_nums);
-	AssertVectorEq(nums, insertion_nums);
-	AssertVectorEq(nums, merge_nums);
-	AssertVectorEq(nums, bubble_nums);
+	TestSort(nums);
 
 	nums = {1};
-	insertion_nums = nums;
-	merge_nums = nums;
-	bubble_nums = nums;
-
-	std::sort(nums.begin(), nums.end());
-	sort::InsertionSort(insertion_nums);
-	sort::MergeSort(merge_nums);
-	sort::BubbleSort(bubble_nums);
-	AssertVectorEq(nums, insertion_nums);
-	AssertVectorEq(nums, merge_nums);
-	AssertVectorEq(nums, bubble_nums);
+	TestSort(nums);
 
 	nums = {3, 2, 1, 12, 2, 3, 2};
-	insertion_nums = nums;
-	merge_nums = nums;
-	bubble_nums = nums;
+	TestSort(nums);
 
-	std::sort(nums.begin(), nums.end());
-	sort::InsertionSort(insertion_nums);
-	sort::MergeSort(merge_nums);
-	sort::BubbleSort(bubble_nums);
-	AssertVectorEq(nums, insertion_nums);
-	AssertVectorEq(nums, merge_nums);
-	AssertVectorEq(nums, bubble_nums);
+	nums = { 3, 2, 1, 1, 2, 3, 34, 5, 0, -1, 1, 12, 2, 3, 2 };
+	TestSort(nums);
 };
 
 

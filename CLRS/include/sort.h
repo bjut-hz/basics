@@ -9,6 +9,7 @@ namespace CLRS {
 		static void InsertionSort(std::vector<int>&);
 		static void MergeSort(std::vector<int>&);
 		static void BubbleSort(std::vector<int>&);
+		static void HeapSort(std::vector<int>&);
 
 		private:
 		static void Merge(std::vector<int>&, std::vector<int>&, int, int, int);

@@ -29,6 +29,47 @@ namespace CLRS {
 		}
 	}
 
+	void sort::HeapSort(std::vector<int>& nums) {
+		auto Parent = [](int i) {return (i - 1) / 2;};
+		auto Left = [](int i) {return 2 * i + 1;};
+		auto Right = [](int i) { return 2 * i + 2;};
+
+		auto MaxHeapify = Y(
+			[&](auto&& self, std::vector<int>& nums, int i, int heap_size) -> void {
+				auto l = Left(i);
+				auto r = Right(i);
+				int largest = i;
+				if(l < heap_size && nums[l] > nums[largest]) {
+					largest = l;
+				}
+				if(r < heap_size && nums[r] > nums[largest]) {
+					largest = r;
+				}
+				if(largest != i) {
+					std::swap(nums[i], nums[largest]);
+					self(nums, largest, heap_size);
+				}
+			}
+		
+		); 
+
+
+		auto BuildHeap = [&](std::vector<int>& nums, int heap_size) {
+			for(int i = heap_size / 2; i >= 0; --i) {
+				MaxHeapify(nums, i, heap_size);
+			}
+		};
+
+		const int N = nums.size();
+		int heap_size = N;
+		BuildHeap(nums, N);
+		for(int i = N - 1; i >= 1; --i) {
+			std::swap(nums[i], nums[0]);
+			heap_size -= 1;
+			MaxHeapify(nums, 0, heap_size);
+		}
+	}
+
 	void sort::Merge(std::vector<int>& nums, std::vector<int>& tmp, int l_pos , int r_pos, int r_end) {
 		int l_end = r_pos - 1;
 		int tmp_pos = l_pos;
