@@ -20,16 +20,19 @@ class SortTest{
 		std::vector<int> merge_nums = nums;
 		std::vector<int> bubble_nums = nums;
 		std::vector<int> heap_nums = nums;
+		std::vector<int> quick_nums = nums;
 
 		std::sort(nums.begin(), nums.end());
 		sort::InsertionSort(insertion_nums);
 		sort::MergeSort(merge_nums);
 		sort::BubbleSort(bubble_nums);
 		sort::HeapSort(heap_nums);
+		sort::QuickSort(quick_nums);
 		AssertVectorEq(nums, insertion_nums);
 		AssertVectorEq(nums, merge_nums);
 		AssertVectorEq(nums, bubble_nums);
 		AssertVectorEq(nums, heap_nums);
+		AssertVectorEq(nums, quick_nums);
 	}
 };
 

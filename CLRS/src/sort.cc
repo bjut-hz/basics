@@ -70,6 +70,54 @@ namespace CLRS {
 		}
 	}
 
+	void sort::QuickSort(std::vector<int>& nums) {
+		auto Partition = [](std::vector<int>& nums, int l, int r) -> int {
+			auto x = nums[r];
+			auto i = l - 1;
+
+			for(int j = l; j <= r - 1; ++j) {
+				if(nums[j] <= x) { 
+					// find the num smaller than x and put it in the right position
+					// p <= k <= i, nums[k] <=x
+					i = i + 1;
+					std::swap(nums[i], nums[j]);
+				}
+			}
+			std::swap(nums[i+1], nums[r]);
+			return i + 1; // the position of pivot
+		};
+
+		auto RandomizedPartition = [&](std::vector<int>& nums, int l, int r) {
+			auto i = std::rand() % (r - l + 1) + l;
+			std::swap(nums[r], nums[i]);
+
+			return Partition(nums, l, r);
+		};
+
+		auto QSort = Y(
+			[&](auto&& self, std::vector<int>& nums, int l, int r) -> void {
+				if(l < r) {
+					auto pos = Partition(nums, l, r);
+					self(nums, l, pos - 1);
+					self(nums, pos + 1, r);
+				}
+			}
+		);
+
+		auto RandomizedQSort = Y(
+			[&](auto&& self, std::vector<int>& nums, int l, int r) -> void {
+				if(l < r) {
+					auto pos = RandomizedPartition(nums, l, r);
+					self(nums, l, pos - 1);
+					self(nums, pos + 1, r);
+				}
+			}
+		);
+
+		//QSort(nums, 0, nums.size() - 1);
+		RandomizedQSort(nums, 0, nums.size() - 1);
+ 	}
+
 	void sort::Merge(std::vector<int>& nums, std::vector<int>& tmp, int l_pos , int r_pos, int r_end) {
 		int l_end = r_pos - 1;
 		int tmp_pos = l_pos;
