@@ -118,6 +118,34 @@ namespace CLRS {
 		RandomizedQSort(nums, 0, nums.size() - 1);
  	}
 
+
+	void sort::CountingSort(std::vector<int>& nums, int K) {
+		std::vector<int> C(K, 0);
+		for(auto& ele : nums) {
+			C[ele] += 1;
+		}
+
+		//// C[i] now contains the number of elements less than or equal to i
+		//std::vector<int> A(nums);
+		//for(int i = 1; i < K; ++i) {
+		//	C[i] += C[i-1];
+		//}
+
+		//for(int i = A.size() - 1; i >= 0; --i) {
+		//	nums[C[A[i]] - 1] = A[i];
+		//	C[A[i]] -= 1;
+		//}
+
+		// output the number order directly
+		int index = 0;
+		for (int i = 0; i < K; ++i) {
+			while (C[i] > 0) {
+				nums[index++] = i;
+				--C[i];
+			}
+		}
+	}
+
 	void sort::Merge(std::vector<int>& nums, std::vector<int>& tmp, int l_pos , int r_pos, int r_end) {
 		int l_end = r_pos - 1;
 		int tmp_pos = l_pos;
