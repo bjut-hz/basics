@@ -1,5 +1,7 @@
 #include "sort.h"
 #include "basic.h"
+#include<algorithm>
+#include<assert.h>
 
 namespace CLRS {
 	void sort::InsertionSort(std::vector<int>& nums){
@@ -119,9 +121,18 @@ namespace CLRS {
  	}
 
 
-	void sort::CountingSort(std::vector<int>& nums, int K) {
+	void sort::CountingSort(std::vector<int>& nums) {
+		if (nums.size() == 0) return;
+		auto min_iter = std::min_element(nums.begin(), nums.end());
+		auto max_iter = std::max_element(nums.begin(), nums.end());
+		int minus_delta = 0;
+		if(*min_iter < 0) {
+			minus_delta -= *min_iter;
+		}
+		int K = *max_iter + minus_delta + 1;
 		std::vector<int> C(K, 0);
 		for(auto& ele : nums) {
+			ele += minus_delta;
 			C[ele] += 1;
 		}
 
@@ -140,9 +151,39 @@ namespace CLRS {
 		int index = 0;
 		for (int i = 0; i < K; ++i) {
 			while (C[i] > 0) {
-				nums[index++] = i;
+				nums[index++] = (i - minus_delta);
 				--C[i];
 			}
+		}
+	}
+
+	void sort::RadixSort(std::vector<int>& nums) {
+		if (0 == nums.size()) return;
+
+		auto max_iter = std::max_element(nums.begin(), nums.end());
+		auto GetIntLen = [](int num) -> int {
+			int base = 10;
+			int len = 1;
+			while(num / base) {
+				++len;
+				base *= 10;
+			}
+			return len;
+		};
+
+		const int d = GetIntLen(*max_iter);
+		for(int i = 0; i < d; ++i) {
+			// should use stable sort to maintain radix sort's stability
+			std::stable_sort(nums.begin(), nums.end(), [&](const int& lhs, const int& rhs){
+				int base = std::pow(10, i);
+				int lhs_quotient = lhs / base;
+				int lhs_remainer = lhs_quotient % 10;
+
+				int rhs_quotient = rhs / base;
+				int rhs_remainer = rhs_quotient % 10;
+				
+				return lhs_remainer < rhs_remainer;
+			});
 		}
 	}
 
