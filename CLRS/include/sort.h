@@ -13,6 +13,7 @@ namespace CLRS {
 		static void QuickSort(std::vector<int>&);
 		static void CountingSort(std::vector<int>&);
 		static void RadixSort(std::vector<int>&);
+		static void BucketSort(std::vector<int>&);
 
 		private:
 		static void Merge(std::vector<int>&, std::vector<int>&, int, int, int);
