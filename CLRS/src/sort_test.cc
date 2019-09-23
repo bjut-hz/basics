@@ -23,6 +23,8 @@ class SortTest{
 		std::vector<int> quick_nums = nums;
 		std::vector<int> counting_nums = nums;
 		std::vector<int> radix_nums = nums;
+		std::vector<int> bucket_nums = nums;
+
 
 		
 		std::sort(nums.begin(), nums.end());
@@ -34,6 +36,8 @@ class SortTest{
 		sort::QuickSort(quick_nums);
 		sort::CountingSort(counting_nums);
 		sort::RadixSort(radix_nums);
+		sort::BucketSort(bucket_nums);
+
 		AssertVectorEq(nums, insertion_nums);
 		AssertVectorEq(nums, merge_nums);
 		AssertVectorEq(nums, bubble_nums);
@@ -41,6 +45,7 @@ class SortTest{
 		AssertVectorEq(nums, quick_nums);
 		AssertVectorEq(nums, counting_nums);
 		AssertVectorEq(nums, radix_nums);
+		AssertVectorEq(nums, bucket_nums);
 	}
 };
 
@@ -51,7 +56,7 @@ TEST(SortTest, AllSort) {
 	nums = {1};
 	TestSort(nums);
 
-	nums = {-1, -2, 3, 2, 12, 0, 10000, 999, 87};
+	nums = {-1, -2, 3, 2, 12, 0, 10000, 999, 87, 9999, 9998, 9999};
 	TestSort(nums);
 
 	nums = { 3, 2, 1, 1, 2, 3, 34, 5, 0, 0, 1, 12, 2, 3, 2 };

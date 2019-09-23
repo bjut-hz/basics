@@ -1,6 +1,7 @@
 #include "sort.h"
 #include "basic.h"
 #include<algorithm>
+#include<list>
 #include<assert.h>
 
 namespace CLRS {
@@ -184,6 +185,35 @@ namespace CLRS {
 				
 				return lhs_remainer < rhs_remainer;
 			});
+		}
+	}
+
+	void sort::BucketSort(std::vector<int>& nums) {
+		const int N = nums.size();
+		if (1 >= N) return;
+
+		const int bucket_num = N / 2 == 0 ? 1 : N / 2;
+		std::vector<std::vector<int>> buckets(bucket_num);
+		const auto min = std::min_element(nums.begin(), nums.end());
+		const auto max = std::max_element(nums.begin(), nums.end());
+
+		// get the distance between bucket 
+		const int shift = (*max - *min) / bucket_num;
+		for(auto& num : nums) { // put the num into the right bucket
+			int i = 0;
+			for(i = 0; i + 1 < bucket_num; ++i) {
+				if(num < (i+1) * shift + (*min)) {
+					break;
+				}
+			}
+			buckets[i].push_back(num);
+		}
+
+		int pos = 0;
+		for(auto& vec : buckets) { // sort every bucket and concatenate all the buckets
+			std::sort(vec.begin(), vec.end());
+			std::copy(vec.begin(), vec.end(), nums.begin() + pos);
+			pos += vec.size();
 		}
 	}
 
