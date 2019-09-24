@@ -2,6 +2,7 @@
 #define SORT_H_
 
 #include<vector>
+#include "basic.h"
 
 namespace CLRS {
 	class sort{

@@ -3,6 +3,7 @@
 #include<vector>
 #include <cstdlib>
 #include<algorithm>
+#include "basic.h"
 
 namespace CLRS {
 	void PermuteBySorting(std::vector<int>& A) {

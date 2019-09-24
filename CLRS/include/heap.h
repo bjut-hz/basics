@@ -2,6 +2,8 @@
 #define MAX_HEAP_H_
 #include<vector>
 #include<assert.h>
+#include "basic.h"
+
 class MaxHeap {
 public:
 	explicit MaxHeap(std::vector<int>& nums) : nums_(nums.size() + 1), heap_size_(nums.size()) {

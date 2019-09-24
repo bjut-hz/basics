@@ -4,6 +4,8 @@
 #include<vector>
 #include<algorithm>
 #include<assert.h>
+#include "basic.h"
+
 namespace CLRS {
 	// O(N)
 	int Minimum(std::vector<int>& nums) {

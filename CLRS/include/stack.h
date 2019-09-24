@@ -3,6 +3,7 @@
 
 #include<vector>
 #include<assert.h>
+#include "basic.h"
 namespace CLRS {
 	class Stack {
 	public:
