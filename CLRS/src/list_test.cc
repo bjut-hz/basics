@@ -31,6 +31,18 @@ TEST(ListTest, Iterator) {
 		std::cout << n << " ";
 	});
 };
+
+TEST(ListTest, DoubleLinkedList) {
+	DoubleLinkedList list;
+	list.Insert(1);
+	DoubleLinkedList::Node* ptr = list.Insert(2);
+	list.Insert(3);
+
+	ASSERT_EQ(ptr, list.Find(2));
+
+	list.Remove(ptr);
+	ASSERT_EQ(true, nullptr == list.Find(2));
+};
 } // namespace CLRS
 
 

@@ -8,7 +8,7 @@ namespace CLRS {
 	class ListNode {
 	public:
 		ListNode() = default;
-		ListNode(int val) : val_(val) {}
+		explicit ListNode(int val) : val_(val) {}
 		ListNode* next_ = nullptr;
 		int val_ = 0;
 	};
@@ -127,6 +127,68 @@ namespace CLRS {
 			ptr_ = l->head_.next_;
 		}
 	}
+
+
+	class DoubleLinkedList {
+	public:
+		class Node {
+		public:
+			Node() = default;
+			explicit Node(int val) : val_(val){}
+
+			Node* prev_ = nullptr;
+			Node* next_ = nullptr;
+			int val_ = 0;
+		};
+
+	public:
+		DoubleLinkedList() {
+			dummy_.next_ = &dummy_;
+			dummy_.prev_ = &dummy_;
+		}
+
+		~DoubleLinkedList() {
+			while(dummy_.next_ != &dummy_) {
+				Remove(dummy_.next_);
+			}
+		}
+
+		Node* Find(int val) {
+			Node* pos = dummy_.next_;
+			while(pos != &dummy_) {
+				if(pos->val_ == val) {
+					return pos;
+				}
+				pos = pos->next_;
+			}
+			return nullptr;
+		}
+
+		Node* Insert(int val) {
+			Node* new_node = new Node(val);
+			Insert(&dummy_, new_node);
+			return new_node;
+		}
+		void Remove(Node* pos) {
+			pos->prev_->next_ = pos->next_;
+			pos->next_->prev_ = pos->prev_;
+			
+			delete pos;
+			pos = nullptr;
+		}
+
+	private: 
+		void Insert(Node* pos, Node* new_node) {
+			new_node->next_ = pos->next_;
+			pos->next_ = new_node;
+
+			new_node->next_->prev_ = new_node;
+			new_node->prev_ = pos;
+		}
+
+	private:
+		Node dummy_;
+	};
 } // namespace CLRS
 
 #endif // LIST_H_

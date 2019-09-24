@@ -24,6 +24,8 @@ target_sources(hz
     "${CLRS_PUBLIC_INCLUDE_DIR}/heap.h"
     "${CLRS_PUBLIC_INCLUDE_DIR}/list.h"
     "${CLRS_PUBLIC_INCLUDE_DIR}/order_statistic.h"
+    "${CLRS_PUBLIC_INCLUDE_DIR}/stack.h"
+    "${CLRS_PUBLIC_INCLUDE_DIR}/queue.h"
 )
 
 if(CLRS_BUILD_TESTS)
@@ -53,6 +55,8 @@ if(CLRS_BUILD_TESTS)
   clrs_test("${PROJECT_SOURCE_DIR}/src/heap_test.cc")
   clrs_test("${PROJECT_SOURCE_DIR}/src/list_test.cc")
   clrs_test("${PROJECT_SOURCE_DIR}/src/order_statistic_test.cc")
+  clrs_test("${PROJECT_SOURCE_DIR}/src/stack_test.cc")
+  clrs_test("${PROJECT_SOURCE_DIR}/src/queue_test.cc")
 endif(CLRS_BUILD_TESTS)
 
 install(
