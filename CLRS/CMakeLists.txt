@@ -27,6 +27,7 @@ target_sources(hz
     "${CLRS_PUBLIC_INCLUDE_DIR}/stack.h"
     "${CLRS_PUBLIC_INCLUDE_DIR}/queue.h"
     "${CLRS_PUBLIC_INCLUDE_DIR}/hash.h"
+    "${CLRS_PUBLIC_INCLUDE_DIR}/binary_search_tree.h"
 )
 
 if(CLRS_BUILD_TESTS)
@@ -59,6 +60,7 @@ if(CLRS_BUILD_TESTS)
   clrs_test("${PROJECT_SOURCE_DIR}/src/stack_test.cc")
   clrs_test("${PROJECT_SOURCE_DIR}/src/queue_test.cc")
   clrs_test("${PROJECT_SOURCE_DIR}/src/hash_test.cc")
+  clrs_test("${PROJECT_SOURCE_DIR}/src/binary_search_tree_test.cc")
 endif(CLRS_BUILD_TESTS)
 
 install(
