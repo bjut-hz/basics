@@ -19,6 +19,7 @@ target_sources(hz
     "${PROJECT_SOURCE_DIR}/src/singleton.cc"
     "${DP_PUBLIC_INCLUDE_DIR}/singleton.h"
     "${DP_PUBLIC_INCLUDE_DIR}/barrier.h"
+    "${DP_PUBLIC_INCLUDE_DIR}/simple_factory.h"
 )
 
 if(DP_BUILD_TESTS)
@@ -42,6 +43,7 @@ if(DP_BUILD_TESTS)
   endfunction(dp_test)
 
   dp_test("${PROJECT_SOURCE_DIR}/src/singleton_test.cc")
+  dp_test("${PROJECT_SOURCE_DIR}/src/factory_test.cc")
 endif(DP_BUILD_TESTS)
 
 install(
