@@ -1,6 +1,6 @@
 ### Design Pattern
 
-implementation of usual design patter with C++
+implementation of usual design pattern with C++
 
 ### Building for Windows
 
