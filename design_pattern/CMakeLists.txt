@@ -21,6 +21,7 @@ target_sources(hz
     "${DP_PUBLIC_INCLUDE_DIR}/barrier.h"
     "${DP_PUBLIC_INCLUDE_DIR}/simple_factory.h"
     "${DP_PUBLIC_INCLUDE_DIR}/strategy.h"
+    "${DP_PUBLIC_INCLUDE_DIR}/decorator.h"
 )
 
 if(DP_BUILD_TESTS)
@@ -46,6 +47,7 @@ if(DP_BUILD_TESTS)
   dp_test("${PROJECT_SOURCE_DIR}/src/singleton_test.cc")
   dp_test("${PROJECT_SOURCE_DIR}/src/factory_test.cc")
   dp_test("${PROJECT_SOURCE_DIR}/src/strategy_test.cc")
+  dp_test("${PROJECT_SOURCE_DIR}/src/decorator_test.cc")
 endif(DP_BUILD_TESTS)
 
 install(
