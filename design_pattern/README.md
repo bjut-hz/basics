@@ -1,3 +1,7 @@
+### Design Pattern
+
+implementation of usual design patter with C++
+
 ### Building for Windows
 
 First generate the Visual Studio 2017 project/solution files:
