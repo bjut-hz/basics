@@ -1,13 +1,14 @@
 #include "util/testharness.h"
 #include "util/basic.h"
 #include "simple_factory.h"
+#include "factory_method.h"
 
 namespace DP {
 	
-class SingleFactoryTest{};
+class FactoryTest{};
 
-TEST(SingleFactoryTest, Add) {
-	Operation* oper = OperationFactory::CreateOperation(Operation::kAdd);
+TEST(FactoryTest, SimpleFacrtoryAdd) {
+	IOperation* oper = OperationFactory::CreateOperation(IOperation::kAdd);
 	oper->lhs_ = 2;
 	oper->rhs_ = 3;
 
@@ -16,8 +17,8 @@ TEST(SingleFactoryTest, Add) {
 	delete oper;
 };
 
-TEST(SingleFactoryTest, Sub) {
-	Operation* oper = OperationFactory::CreateOperation(Operation::kSub);
+TEST(FactoryTest, SimpleFacrtorySub) {
+	IOperation* oper = OperationFactory::CreateOperation(IOperation::kSub);
 	oper->lhs_ = 2;
 	oper->rhs_ = 3;
 
@@ -26,8 +27,8 @@ TEST(SingleFactoryTest, Sub) {
 	delete oper;
 };
 
-TEST(SingleFactoryTest, Multi) {
-	Operation* oper = OperationFactory::CreateOperation(Operation::kMulti);
+TEST(FactoryTest, SimpleFacrtoryMulti) {
+	IOperation* oper = OperationFactory::CreateOperation(IOperation::kMulti);
 	oper->lhs_ = 2;
 	oper->rhs_ = 3;
 
@@ -36,14 +37,67 @@ TEST(SingleFactoryTest, Multi) {
 	delete oper;
 };
 
-TEST(SingleFactoryTest, Div) {
-	Operation* oper = OperationFactory::CreateOperation(Operation::kDiv);
+TEST(FactoryTest, SimpleFacrtoryDiv) {
+	IOperation* oper = OperationFactory::CreateOperation(IOperation::kDiv);
 	oper->lhs_ = 2;
 	oper->rhs_ = 3;
 
 	ASSERT_EQ(static_cast<NumberType>(2) / static_cast<NumberType>(3), oper->GetResult());
 
 	delete oper;
+};
+
+
+TEST(FactoryTest, FactoryMethodAdd) {
+	IFactory* factory = new AddFactory();
+	IOperation* oper = factory->CreateOperation();
+
+	oper->lhs_ = 2;
+	oper->rhs_ = 3;
+
+	ASSERT_EQ(2 + 3, oper->GetResult());
+
+	delete oper;
+	delete factory;
+};
+
+TEST(FactoryTest, FactoryMethodSub) {
+	IFactory* factory = new SubFactory();
+	IOperation* oper = factory->CreateOperation();
+
+	oper->lhs_ = 2;
+	oper->rhs_ = 3;
+
+	ASSERT_EQ(2 - 3, oper->GetResult());
+
+	delete oper;
+	delete factory;
+};
+
+TEST(FactoryTest, FactoryMethodMulti) {
+	IFactory* factory = new MultiFactory();
+	IOperation* oper = factory->CreateOperation();
+
+	oper->lhs_ = 2;
+	oper->rhs_ = 3;
+
+	ASSERT_EQ(2 * 3, oper->GetResult());
+
+	delete oper;
+	delete factory;
+};
+
+TEST(FactoryTest, FactoryMethodDiv) {
+	IFactory* factory = new DivFactory();
+	IOperation* oper = factory->CreateOperation();
+
+	oper->lhs_ = 2;
+	oper->rhs_ = 3;
+
+	ASSERT_EQ(static_cast<NumberType>(2) / static_cast<NumberType>(3), oper->GetResult());
+
+	delete oper;
+	delete factory;
 };
 } // namespace DP
 

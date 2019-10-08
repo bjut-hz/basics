@@ -1,9 +1,11 @@
 #ifndef SIMPLE_FACTORY_H_
 #define SIMPLE_FACTORY_H_
 
+#include "basic.h"
+
 namespace DP {
 	using NumberType = double;
-	class Operation {
+	class IOperation {
 	public:
 		enum OperationType {
 			kAdd,
@@ -21,7 +23,7 @@ namespace DP {
 	};
 
 
-	class AddOperation : public Operation {
+	class AddOperation : public IOperation {
 	public:
 		virtual NumberType GetResult() const override {
 			return lhs_ + rhs_;
@@ -29,21 +31,21 @@ namespace DP {
 	};
 
 	
-	class SubOperation : public Operation {
+	class SubOperation : public IOperation {
 	public:
 		virtual NumberType GetResult() const override {
 			return lhs_ - rhs_;
 		}
 	};
 
-	class MultiOperation : public Operation {
+	class MultiOperation : public IOperation {
 	public:
 		virtual NumberType GetResult() const override {
 			return lhs_ * rhs_;
 		}
 	};
 
-	class DivOperation : public Operation {
+	class DivOperation : public IOperation {
 	public:
 		virtual NumberType GetResult() const override {
 			return lhs_ / rhs_;
@@ -52,22 +54,22 @@ namespace DP {
 
 	class OperationFactory {
 	public:
-		static Operation* CreateOperation(Operation::OperationType operate) {
-			Operation* oper;
+		static IOperation* CreateOperation(IOperation::OperationType operate) {
+			IOperation* oper;
 			switch (operate)
 			{
-			case Operation::kAdd:
+			case IOperation::kAdd:
 				oper = new AddOperation();
 				break;
-			case Operation::kSub:
+			case IOperation::kSub:
 				oper = new SubOperation();
 				break;
 			
-			case Operation::kMulti:
+			case IOperation::kMulti:
 				oper = new MultiOperation();
 				break;
 											
-			case Operation::kDiv:
+			case IOperation::kDiv:
 				oper = new DivOperation();
 				break;
 			default:

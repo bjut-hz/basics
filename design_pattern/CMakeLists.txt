@@ -23,6 +23,7 @@ target_sources(hz
     "${DP_PUBLIC_INCLUDE_DIR}/strategy.h"
     "${DP_PUBLIC_INCLUDE_DIR}/decorator.h"
     "${DP_PUBLIC_INCLUDE_DIR}/proxy.h"
+    "${DP_PUBLIC_INCLUDE_DIR}/factory_method.h"
 )
 
 if(DP_BUILD_TESTS)
