@@ -27,6 +27,7 @@ target_sources(hz
     "${DP_PUBLIC_INCLUDE_DIR}/prototype.h"
     "${DP_PUBLIC_INCLUDE_DIR}/template_method.h"
     "${DP_PUBLIC_INCLUDE_DIR}/facade.h"
+    "${DP_PUBLIC_INCLUDE_DIR}/builder.h"
 )
 
 if(DP_BUILD_TESTS)
@@ -57,6 +58,7 @@ if(DP_BUILD_TESTS)
   dp_test("${PROJECT_SOURCE_DIR}/src/prototype_test.cc")
   dp_test("${PROJECT_SOURCE_DIR}/src/template_method_test.cc")
   dp_test("${PROJECT_SOURCE_DIR}/src/facade_test.cc")
+  dp_test("${PROJECT_SOURCE_DIR}/src/builder_test.cc")
 endif(DP_BUILD_TESTS)
 
 install(
