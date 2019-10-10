@@ -29,6 +29,7 @@ target_sources(hz
     "${DP_PUBLIC_INCLUDE_DIR}/facade.h"
     "${DP_PUBLIC_INCLUDE_DIR}/builder.h"
     "${DP_PUBLIC_INCLUDE_DIR}/observer.h"
+    "${DP_PUBLIC_INCLUDE_DIR}/abstract_factory.h"
 )
 
 if(DP_BUILD_TESTS)
@@ -42,6 +43,7 @@ if(DP_BUILD_TESTS)
         "${PROJECT_SOURCE_DIR}/util/testharness.cc"
         "${PROJECT_SOURCE_DIR}/util/testharness.h"
         "${PROJECT_SOURCE_DIR}/util/basic.h"
+        "${PROJECT_SOURCE_DIR}/util/SimpleSignal.h"
 
   
         "${test_file}"

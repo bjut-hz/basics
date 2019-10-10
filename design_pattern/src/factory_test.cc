@@ -2,6 +2,7 @@
 #include "util/basic.h"
 #include "simple_factory.h"
 #include "factory_method.h"
+#include "abstract_factory.h"
 
 namespace DP {
 	
@@ -98,6 +99,34 @@ TEST(FactoryTest, FactoryMethodDiv) {
 
 	delete oper;
 	delete factory;
+};
+
+TEST(FactoryTest, AbstractFactory) {
+	std::shared_ptr<AbstractFacroty> factory = std::make_shared<ConcreteFactory1>();
+	std::shared_ptr<AbstractProductA> p_a = factory->CreateProductA();
+	std::shared_ptr<AbstractProductB> p_b = factory->CreateProductB();
+	p_a->Display();
+	p_b->Output();
+
+	//直接更换工厂
+	factory = std::make_shared<ConcreteFactory2>();
+	p_a = factory->CreateProductA();
+	p_b = factory->CreateProductB();
+	p_a->Display();
+	p_b->Output();
+};
+
+TEST(FactoryTest, AbstractFactoryOptimized) {
+	std::shared_ptr<AbstractProductA> p_a = DataAccess::CreateProductA();
+	std::shared_ptr<AbstractProductB> p_b = DataAccess::CreateProductB();
+	p_a->Display();
+	p_b->Output();
+
+	DataAccess::type_ = Type::kB;
+	p_a = DataAccess::CreateProductA();
+	p_b = DataAccess::CreateProductB();
+	p_a->Display();
+	p_b->Output();
 };
 } // namespace DP
 
