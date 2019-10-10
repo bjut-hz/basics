@@ -42,6 +42,7 @@ if(CLRS_BUILD_TESTS)
         "${PROJECT_SOURCE_DIR}/util/testharness.cc"
         "${PROJECT_SOURCE_DIR}/util/testharness.h"
         "${PROJECT_SOURCE_DIR}/util/basic.h"
+        "${PROJECT_SOURCE_DIR}/util/SimpleSignal.h"
 
   
         "${test_file}"
