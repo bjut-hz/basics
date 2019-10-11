@@ -31,6 +31,7 @@ target_sources(hz
     "${DP_PUBLIC_INCLUDE_DIR}/observer.h"
     "${DP_PUBLIC_INCLUDE_DIR}/abstract_factory.h"
     "${DP_PUBLIC_INCLUDE_DIR}/state.h"
+    "${DP_PUBLIC_INCLUDE_DIR}/adapter.h"
 )
 
 if(DP_BUILD_TESTS)
@@ -65,6 +66,7 @@ if(DP_BUILD_TESTS)
   dp_test("${PROJECT_SOURCE_DIR}/src/builder_test.cc")
   dp_test("${PROJECT_SOURCE_DIR}/src/observer_test.cc")
   dp_test("${PROJECT_SOURCE_DIR}/src/state_test.cc")
+  dp_test("${PROJECT_SOURCE_DIR}/src/adapter_test.cc")
 endif(DP_BUILD_TESTS)
 
 install(
