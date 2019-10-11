@@ -15,7 +15,7 @@ namespace DP {
 
 	class Context {
 	public:
-		explicit Context(std::unique_ptr<State> state) {
+		explicit Context(std::unique_ptr<State>&& state) {
 			state_ = std::move(state);
 		}
 		void Request() {
