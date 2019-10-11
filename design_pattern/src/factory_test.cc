@@ -108,7 +108,7 @@ TEST(FactoryTest, AbstractFactory) {
 	p_a->Display();
 	p_b->Output();
 
-	//直接更换工厂
+	// 鐩存帴鏇存崲宸ュ巶
 	factory = std::make_shared<ConcreteFactory2>();
 	p_a = factory->CreateProductA();
 	p_b = factory->CreateProductB();
