@@ -35,6 +35,7 @@ target_sources(hz
     "${DP_PUBLIC_INCLUDE_DIR}/memento.h"
     "${DP_PUBLIC_INCLUDE_DIR}/composite.h"
     "${DP_PUBLIC_INCLUDE_DIR}/iterator.h"
+    "${DP_PUBLIC_INCLUDE_DIR}/bridge.h"
 )
 
 if(DP_BUILD_TESTS)
@@ -73,6 +74,7 @@ if(DP_BUILD_TESTS)
   dp_test("${PROJECT_SOURCE_DIR}/src/memento_test.cc")
   dp_test("${PROJECT_SOURCE_DIR}/src/composite_test.cc")
   dp_test("${PROJECT_SOURCE_DIR}/src/iterator_test.cc")
+  dp_test("${PROJECT_SOURCE_DIR}/src/bridge_test.cc")
 endif(DP_BUILD_TESTS)
 
 install(
