@@ -33,6 +33,7 @@ target_sources(hz
     "${DP_PUBLIC_INCLUDE_DIR}/state.h"
     "${DP_PUBLIC_INCLUDE_DIR}/adapter.h"
     "${DP_PUBLIC_INCLUDE_DIR}/memento.h"
+    "${DP_PUBLIC_INCLUDE_DIR}/composite.h"
 )
 
 if(DP_BUILD_TESTS)
@@ -69,6 +70,7 @@ if(DP_BUILD_TESTS)
   dp_test("${PROJECT_SOURCE_DIR}/src/state_test.cc")
   dp_test("${PROJECT_SOURCE_DIR}/src/adapter_test.cc")
   dp_test("${PROJECT_SOURCE_DIR}/src/memento_test.cc")
+  dp_test("${PROJECT_SOURCE_DIR}/src/composite_test.cc")
 endif(DP_BUILD_TESTS)
 
 install(
