@@ -39,6 +39,7 @@ target_sources(hz
     "${DP_PUBLIC_INCLUDE_DIR}/command.h"
     "${DP_PUBLIC_INCLUDE_DIR}/chain_of_responsibility.h"
     "${DP_PUBLIC_INCLUDE_DIR}/mediator.h"
+    "${DP_PUBLIC_INCLUDE_DIR}/flyweight.h"
 )
 
 if(DP_BUILD_TESTS)
@@ -81,6 +82,7 @@ if(DP_BUILD_TESTS)
   dp_test("${PROJECT_SOURCE_DIR}/src/command_test.cc")
   dp_test("${PROJECT_SOURCE_DIR}/src/chain_of_responsibility_test.cc")
   dp_test("${PROJECT_SOURCE_DIR}/src/mediator_test.cc")
+  dp_test("${PROJECT_SOURCE_DIR}/src/flyweight_test.cc")
 endif(DP_BUILD_TESTS)
 
 install(
