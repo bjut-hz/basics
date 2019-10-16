@@ -29,6 +29,7 @@ target_sources(hz
     "${CLRS_PUBLIC_INCLUDE_DIR}/hash.h"
     "${CLRS_PUBLIC_INCLUDE_DIR}/binary_search_tree.h"
     "${CLRS_PUBLIC_INCLUDE_DIR}/redblack.h"
+    "${CLRS_PUBLIC_INCLUDE_DIR}/dynamic_programming.h"
 )
 
 if(CLRS_BUILD_TESTS)
@@ -42,9 +43,7 @@ if(CLRS_BUILD_TESTS)
         "${PROJECT_SOURCE_DIR}/util/testharness.cc"
         "${PROJECT_SOURCE_DIR}/util/testharness.h"
         "${PROJECT_SOURCE_DIR}/util/basic.h"
-        "${PROJECT_SOURCE_DIR}/util/SimpleSignal.h"
 
-  
         "${test_file}"
     )
     target_link_libraries("${test_target_name}" hz)
@@ -64,6 +63,7 @@ if(CLRS_BUILD_TESTS)
   clrs_test("${PROJECT_SOURCE_DIR}/src/hash_test.cc")
   clrs_test("${PROJECT_SOURCE_DIR}/src/binary_search_tree_test.cc")
   clrs_test("${PROJECT_SOURCE_DIR}/src/redblack_test.cc")
+  clrs_test("${PROJECT_SOURCE_DIR}/src/dynamic_programming_test.cc")
 endif(CLRS_BUILD_TESTS)
 
 install(
