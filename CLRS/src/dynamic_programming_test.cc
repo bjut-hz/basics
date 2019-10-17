@@ -77,6 +77,24 @@ TEST(OrderTest, All) {
 	PrintOptimalParens(s, matrix_a, matrix_b);
 	std::cout << std::endl;
 };
+
+class LcsTest {
+public:
+	std::vector<char> X = {'A', 'B', 'C', 'B', 'D', 'A', 'B'};
+	std::vector<char> Y = {'B', 'D', 'C', 'A', 'B', 'A'};
+};
+
+TEST(LcsTest, Lcs) {
+	std::vector<std::vector<int>> c; 
+	std::vector<std::vector<char>> b;
+
+	LcsLength(X, Y, c, b);
+	auto i = 6;
+	auto j = 5;
+	std::cout << "LCS: " << c[i][j] << ": ";
+	PrintLcs(b, X, i, j);
+	std::cout << std::endl;
+}
 } // namespace CLRS
 
 
