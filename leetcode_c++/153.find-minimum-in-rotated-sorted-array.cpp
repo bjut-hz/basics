@@ -16,7 +16,7 @@ public:
         while(left < right) {
             mid = left + (right - left) / 2;
             if(nums[mid] > nums[right]) { 
-                // left part must be in order
+               // 此时mid肯定不是最小的了
                 left = mid + 1;
             } else {
                 // 此时应该包含mid
