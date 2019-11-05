@@ -40,6 +40,7 @@ public:
 				dq.pop_front();
 			}
 
+            // 保留当前范围内最大的值即可
 			while (!dq.empty() && nums[i] > nums[dq.back()]) {
 				dq.pop_back();
 			}
