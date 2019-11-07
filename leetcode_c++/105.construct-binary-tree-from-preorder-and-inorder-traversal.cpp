@@ -22,7 +22,7 @@ public:
         TreeNode* node = new TreeNode(preorder[pre_l]);
 
         int pos = in_l;
-        for(; pos <= pre_r; ++pos) {
+        for(; pos <= in_r; ++pos) {
             if(inorder[pos] == preorder[pre_l]) {
                 break;
             }
