@@ -17,9 +17,6 @@
 class Solution {
 public:
     vector<TreeNode*> generateTrees(int start, int end) {
-        if(start == end) {
-            return {new TreeNode(start)};
-        }
         if(start > end) {
             return {NULL};
         }
