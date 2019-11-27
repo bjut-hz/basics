@@ -39,6 +39,7 @@
 class Solution {
 public:
     // 水塘抽样算法: https://www.cnblogs.com/krcys/p/9121487.html
+    // knuth shuffle
     Solution(vector<int>& nums) {
         nums_ = nums;
     }
