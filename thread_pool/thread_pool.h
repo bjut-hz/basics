@@ -79,10 +79,10 @@ public:
 
 private:
     struct data {
-        std::condition_variable 					cv;
-        std::mutex									mu_;
-        std::queue<std::function<void(void)>> 		tasks_;
-        bool										shut_down = false;
+        std::condition_variable                     cv;
+        std::mutex                                  mu_;
+        std::queue<std::function<void(void)>>       tasks_;
+        bool                                        shut_down = false;
     };
 
     std::shared_ptr<data> data_;
