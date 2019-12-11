@@ -8,8 +8,8 @@
 #include <thread>
 #include <functional>
 #include <queue>
+#include <future>
 
-// no return value
 class ThreadPool {
 public:
 	explicit ThreadPool(int size) {
@@ -51,6 +51,7 @@ public:
 		data_->cv.notify_all();
 	}
 
+	// void(void) template specialization
 	template <typename Func>
 	void Sumbit(Func&& task) {
 		{
@@ -60,11 +61,27 @@ public:
 		data_->cv.notify_one();
 	}
 
+	template <typename R, typename... Args>
+	auto Sumbit(R&& f, Args&& ...args) -> std::future<decltype(f(args...))> {
+		auto task_ptr = std::make_shared<std::packaged_task<decltype(f(args...))()>>( 
+			std::bind(std::forward<R>(f), std::forward<Args>(args)...)
+		);
+		{
+			std::lock_guard<std::mutex> lock(data_->mu_);
+			// 包装成void(void)类型
+			data_->tasks_.emplace([task_ptr](){
+				(*task_ptr)();
+			});
+		}
+		data_->cv.notify_one();
+		return task_ptr->get_future();
+	}
+
 private:
 	struct data {
 		std::condition_variable 				cv;
 		std::mutex								mu_;
-		std::queue<std::function<void()>> 		tasks_;
+		std::queue<std::function<void(void)>> 		tasks_;
 		bool									shut_down = false;
 	};
 
