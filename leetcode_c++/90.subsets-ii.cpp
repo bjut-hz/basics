@@ -11,13 +11,13 @@ public:
         res.push_back(out);
 
         for(int i = start; i < nums.size(); ++i) {
+            // remove duplicate
+            if(i > start && nums[i-1] == nums[i])  {
+                continue;
+            }
             out.push_back(nums[i]);
             helper(res, out, nums, i + 1);
             out.pop_back();
-
-            while(i + 1 < nums.size() && nums[i+1] == nums[i])  {
-                ++i;
-            }
         }
     }
     vector<vector<int>> subsetsWithDup(vector<int>& nums) {
