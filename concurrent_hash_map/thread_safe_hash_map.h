@@ -63,7 +63,7 @@ public:
 private:
     HashMap<Key, Val>& GetEntry(Key key) {
         size_t hash = std::hash<Key>{}(key);
-        size_t idx = hash & (lists_.size() - 1);
+        size_t idx = hash % lists_.size();
         return lists_[idx];
     }
 
