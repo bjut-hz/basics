@@ -97,27 +97,27 @@ public:
     }
     
     void addNum(int num) {
-        left_.push(num);
-        right_.push(left_.top());
-        left_.pop();
+        min_heap_.push(num);
+        max_heap_.push(min_heap_.top());
+        min_heap_.pop();
 
-        if(left_.size() < right_.size()) {
-            left_.push(right_.top());
-            right_.pop();
+        if(min_heap_.size() < max_heap_.size()) {
+            min_heap_.push(max_heap_.top());
+            max_heap_.pop();
         }
     }
     
     double findMedian() {
-        if(left_.size() > right_.size()) {
-            return left_.top();
+        if(min_heap_.size() > max_heap_.size()) {
+            return min_heap_.top();
         } else {
-            return 0.5 * (left_.top() + right_.top());
+            return 0.5 * (min_heap_.top() + max_heap_.top());
         }
     }
 
 private:
-    priority_queue<long, vector<long>, greater<long>> left_;
-    priority_queue<long, vector<long>, less<long>> right_;
+    priority_queue<long, vector<long>, greater<long>> min_heap_;
+    priority_queue<long, vector<long>, less<long>> max_heap_;
 };
 
 
