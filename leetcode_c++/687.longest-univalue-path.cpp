@@ -16,26 +16,49 @@
  */
 class Solution {
 public:
+    // // 递归表示以当前节点的父节点为终点的最大单侧路径长度
+    // int helper(TreeNode* root, int parent, int& res) {
+    //     if(NULL == root) return 0;
+
+    //     int left = helper(root->left, root->val, res);
+    //     int right = helper(root->right, root->val, res);
+
+    //     res = max(res, left + right);
+    //     if(root->val == parent) {
+    //         return max(left, right) + 1;
+    //     }
+    //     return 0;
+    // }
+
+    // int longestUnivaluePath(TreeNode* root) {
+    //     if(NULL == root) return 0;
+    //     int res = 0;
+    //     helper(root, root->val, res);
+    //     return res;
+    // }
+
     // 递归表示以当前节点为终点的最大单侧路径长度
-    int helper(TreeNode* root, int parent, int& res) {
+    int helper(TreeNode* root, int& res) {
         if(NULL == root) return 0;
 
-        int left = helper(root->left, root->val, res);
-        int right = helper(root->right, root->val, res);
+        int left = helper(root->left, res);
+        int right = helper(root->right, res);
 
+        left = (root->left && root->left->val == root->val) ? left + 1 : 0;
+        right = (root->right && root->right->val == root->val) ? right + 1 : 0;
         res = max(res, left + right);
-        if(root->val == parent) {
-            return max(left, right) + 1;
-        }
-        return 0;
+        return max(left, right);
     }
 
     int longestUnivaluePath(TreeNode* root) {
         if(NULL == root) return 0;
         int res = 0;
-        helper(root, root->val, res);
+        helper(root, res);
         return res;
     }
+
+
+
     // int helper(TreeNode* root, int parent) {
     //     if(NULL == root) return 0;
 
