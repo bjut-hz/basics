@@ -101,12 +101,10 @@ public:
                 chars[ans++] = chars[i];
                 
                 if(cnt > 1) {
-                    int tmp1 = ans;
-                    while(cnt != 0) {
-                        chars[ans++] = '0' + (cnt % 10);
-                        cnt /= 10;
+                    auto cnt_str = to_string(cnt);
+                    for(auto& ch : cnt_str) {
+                        chars[ans++] = ch;
                     }
-                    reverse(chars.begin() + tmp1, chars.begin() + ans);
                 }
                 cnt = 1;
             }
