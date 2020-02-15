@@ -40,9 +40,34 @@ public:
     // recursive optimize
     
     // DP
-    // dp[i][j]表示s[0,i)与p[0,j)是否match
-    bool isMatch(string s, string p) {
+    /**
+        dp[i][j]表示s[0,i-1]与p[0,j-1]是否match
+        dp[i][j] = dp[i-1][j-1], if p[j-1] != '*' && (s[i-1] == p[j-1] || p[j-1] == '.')
 
+        如果p[j-1] == '*', 那么可以分成三种情况：
+        1、匹配0次：    dp[i][j] = dp[i][j-2]
+        2、匹配1次：    dp[i][j] = dp[i][j-1]， (s[i-1] == p[j-2] || p[j-2] == '.')
+        3、至少1次：   dp[i][j] = dp[i-1][j]，(s[i-1] == p[j-2] || p[j-2] == '.') 公式解释:如果dp[i-1][j]为真的话，说明*已经进行了匹配(0,1多次都有可能)，此时再多加一次匹配   
+
+        2,3可以合并
+    */
+    bool isMatch(string s, string p) {
+        int m = s.size();
+        int n = p.size();
+
+        vector<vector<bool>> dp(m + 1, vector<bool>(n + 1, false));
+        dp[0][0] = true;
+        for(int i = 0; i <= m; ++i) {
+            for(int j = 1; j <= n; ++j) {
+                if(j > 1 && p[j-1] == '*' ) {
+                    dp[i][j] = dp[i][j-2] || (i > 0 && (s[i-1] == p[j-2] || p[j-2] == '.') && dp[i-1][j]);
+                } else {
+                    dp[i][j] = i > 0 && dp[i-1][j-1] && (s[i-1] == p[j-1] || p[j-1] == '.');
+                }
+            }
+        }
+
+        return dp[m][n];
     }
 };
 // @lc code=end
