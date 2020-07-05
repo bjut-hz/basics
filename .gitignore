@@ -17,3 +17,8 @@
 .vscode/
 build/
 out/
+
+
+CtCi-6th/cmake-build-debug/
+CtCi-6th/CMakeLists.txt
+CtCi-6th/main.cpp
