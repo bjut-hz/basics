@@ -95,7 +95,7 @@ namespace CLRS {
 					Handle* next = h->next;
 					int hash = h->hash;
 
-					Handle** ptr = &list_[Hash(hash, new_length)];
+					Handle** ptr = &new_list[Hash(hash, new_length)];
 					h->next = *ptr;
 					*ptr = h;
 					h = next;
